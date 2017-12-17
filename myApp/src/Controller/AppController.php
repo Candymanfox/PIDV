@@ -16,6 +16,8 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Auth;
+use App\Model\Entity\User;
 
 /**
  * Application Controller
@@ -45,12 +47,12 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
             'loginRedirect' => [
-                'controller' => 'XXX',
+                'controller' => 'home',
                 'action' => 'index'
             ],
             'logoutRedirect' => [
-                'controller' => 'Home',
-                'action' => 'index'
+                'controller' => 'users',
+                'action' => 'login'
             ]
         ]);
 
@@ -61,6 +63,14 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
+    }
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['home', 'view', 'display']);
+        if($this->Auth->user()){
+            $this->set('user', $this->Auth->user());
+            $this->set('name', $this->Auth->user('username'));}
+            else {$this->set('name', 'Login');}
     }
     public function isAuthorized($user)
     {

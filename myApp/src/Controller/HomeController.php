@@ -5,8 +5,11 @@
  * Date: 07-10-17
  * Time: 11:48
  */
-class HomeController extends Controller{
+namespace App\Controller;
+
+class HomeController extends AppController{
     public function index()
     {
-        $this->viewBuilder()->layout('home');    }
+        $this->render('/pages/home');
+    }
 }
