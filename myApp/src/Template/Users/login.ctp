@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <?= $this->Flash->render() ?>
-            <?= $this->Form->create('login', ['type' => 'post']) ?>
+            <?= $this->Form->create() ?>
             <div class="top-margin">
                 <?= $this->Form->control('username', ['class' => 'form-control']) ?>
             </div>

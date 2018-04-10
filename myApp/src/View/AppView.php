@@ -36,5 +36,9 @@ class AppView extends View
      */
     public function initialize()
     {
+        //template de formulaires
+        $this->loadHelper('Form', [
+            'templates' => 'form_template',
+        ]);
     }
 }

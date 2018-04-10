@@ -26,7 +26,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class="<?php if($thisPage=="home")echo 'active' ?>"><?= $this->Html->link('Accueil','/home'); ?></li>
-					<li class="<?php if($thisPage=="profile")echo 'active'?>"><a href="">Profile</a></li>
+					<li class="<?php if($thisPage=="profile")echo 'active'?>"><?= $this->Html->link('Profile Musical','/preference/index'); ?></li>
 					<li class="<?php if($thisPage=="mesConnexions")echo 'active'?>"><a href="">Mes Connexions</a></li>
 					<li class="<?php if($thisPage=="connexions")echo 'active'?>"><a href="">Connexions proposées</a></li>
                     <!-- Check si login pour récupérer le nom et permettre le logout (dropdown) -->

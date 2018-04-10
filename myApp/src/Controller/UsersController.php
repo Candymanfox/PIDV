@@ -8,7 +8,7 @@
 
 namespace App\Controller;
 
-
+use App\Model\Entity\Recording;
 use Cake\Event\Event;
 use Cake\Routing\Route\Route;
 use Cake\Routing\Router;
@@ -30,8 +30,9 @@ class UsersController extends AppController
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error(__("Nom d'utilisateur ou mot de passe incorrect"), [
-                'key' => 'auth'
+                //'key' => 'auth'
             ]);
+
         }
     }
     public function logout()
@@ -53,13 +54,23 @@ class UsersController extends AppController
     }
     public function edit(){
         $user = $this->Users->get($this->Auth->user('id'));
-        if ($this->request->is('post')){
+        if ($this->request->is('put')){
             $user = $this->Users->patchEntity($user, $this->request->getData() );
             if ($this->Users->save($user)) {
-                $this->Flash->success(__("L'utilisateur a été sauvegardé."));
-                return $this->redirect(['action' => 'login']);
+                $this->Flash->success(__("L'utilisateur a été modifié."));
+                $this->Auth->setUser($user);
+                return $this->redirect(['action' => 'edit']);
             }
             $this->Flash->error(__("Impossible d'ajouter l'utilisateur."));
+        }
+        $this->set('user', $user);
+    }
+    public function addUserPreferedTitle(){
+        $user = $this->Users->get($this->Auth->user('id'));
+        if ($this->request->is('post')){
+            var_dump($this->request->getData());
+
+
         }
     }
 }

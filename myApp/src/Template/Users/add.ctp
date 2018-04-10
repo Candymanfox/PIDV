@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <?= $this->Form->create('add', ['type' => 'post']) ?>
+            <?= $this->Form->create($user) ?>
             <div class="top-margin">
                 <?= $this->Flash->render() ?>
                 <?= $this->Form->control('lastname', ['class' => 'form-control']) ?>

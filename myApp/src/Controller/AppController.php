@@ -53,7 +53,8 @@ class AppController extends Controller
             'logoutRedirect' => [
                 'controller' => 'users',
                 'action' => 'login'
-            ]
+            ],
+            'authError' => 'Vous n\'avez pas accès à cette partie du site, veuillez vous connecter'
         ]);
 
 
@@ -68,14 +69,13 @@ class AppController extends Controller
     {
         $this->Auth->allow(['home', 'view', 'display']);
         if($this->Auth->user()){
-            $this->set('user', $this->Auth->user());
             $this->set('name', $this->Auth->user('username'));}
             else {$this->set('name', 'Login');}
     }
     public function isAuthorized($user)
     {
         if (isset($user['role'])
-        && $user['role'] === 'user')
+        && $user['role'] === 'admin')
         {
             return true;
         }
